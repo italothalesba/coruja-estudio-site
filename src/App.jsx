@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-// ===================================================================
-// A CORREÇÃO DEFINITIVA ESTÁ AQUI: A ORDEM DOS IMPORTS DE CSS
-// ===================================================================
-// 1. PRIMEIRO, importamos os estilos da biblioteca Swiper para criar a base.
+// Ordem correta de importação de CSS
 import 'swiper/css'; 
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-// 2. DEPOIS, importamos nosso CSS personalizado para aplicar nosso tema por cima.
 import './App.css'; 
-
-// 3. E por último, os estilos de outras bibliotecas.
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-// ===================================================================
 
-// --- Imports de Lógica ---
+// Imports de Lógica e Componentes
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-
-// --- Imports de Ícones e Assets ---
 import { FaWhatsapp, FaComments, FaCalendarAlt, FaCamera, FaGift } from 'react-icons/fa';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import logo from './assets/logo-coruja.png';
 
 // ===================================================================
-// DADOS (Sem alterações)
+// DADOS
 // ===================================================================
 const whatsappLink = "https://wa.me/5588988088291?text=Olá! Quero um orçamento para formatura de ABC!";
 
@@ -38,7 +28,7 @@ const imageUrls = [
 const lightboxSlides = imageUrls.map(url => ({ src: url }));
 
 // ===================================================================
-// COMPONENTE PRINCIPAL (Sem alterações na lógica)
+// COMPONENTE PRINCIPAL
 // ===================================================================
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -79,6 +69,7 @@ function App() {
           {isMobile ? (
             <div className="mobile-carousel">
               <Swiper 
+                className="swiper"
                 modules={[Pagination, Navigation, Autoplay]}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 slidesPerView={1}
