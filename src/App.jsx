@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
-// --- Imports de Estilos (ORDEM CORRETA É CRUCIAL) ---
-import './App.css'; // Nosso CSS personalizado
-import 'swiper/css'; // CSS Principal do Swiper
-import 'swiper/css/navigation'; // CSS do Módulo de Navegação
-import 'swiper/css/pagination'; // CSS do Módulo de Paginação
+// ===================================================================
+// A CORREÇÃO DEFINITIVA ESTÁ AQUI: A ORDEM DOS IMPORTS DE CSS
+// ===================================================================
+// 1. PRIMEIRO, importamos os estilos da biblioteca Swiper para criar a base.
+import 'swiper/css'; 
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+// 2. DEPOIS, importamos nosso CSS personalizado para aplicar nosso tema por cima.
+import './App.css'; 
+
+// 3. E por último, os estilos de outras bibliotecas.
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+// ===================================================================
 
 // --- Imports de Lógica ---
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
 
 // --- Imports de Ícones e Assets ---
 import { FaWhatsapp, FaComments, FaCalendarAlt, FaCamera, FaGift } from 'react-icons/fa';
@@ -18,7 +26,7 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 import logo from './assets/logo-coruja.png';
 
 // ===================================================================
-// DADOS
+// DADOS (Sem alterações)
 // ===================================================================
 const whatsappLink = "https://wa.me/5588988088291?text=Olá! Quero um orçamento para formatura de ABC!";
 
@@ -30,7 +38,7 @@ const imageUrls = [
 const lightboxSlides = imageUrls.map(url => ({ src: url }));
 
 // ===================================================================
-// COMPONENTE PRINCIPAL
+// COMPONENTE PRINCIPAL (Sem alterações na lógica)
 // ===================================================================
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -72,7 +80,7 @@ function App() {
             <div className="mobile-carousel">
               <Swiper 
                 modules={[Pagination, Navigation, Autoplay]}
-                autoplay={{ delay: 3000, disableOnInteraction: false }} /* Ajustado para um delay mais agradável */
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
                 slidesPerView={1}
                 spaceBetween={20} 
                 loop={true} 
