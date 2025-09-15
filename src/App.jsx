@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 // --- Imports ---
-import './App.css'; // Importa nosso novo arquivo CSS
+import './App.css'; 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import Lightbox from "yet-another-react-lightbox";
-import "swiper/css"; import "swiper/css/pagination"; import "swiper/css/navigation";
+import "swiper/css"; 
+import "swiper/css/pagination"; 
+import "swiper/css/navigation";
 import "yet-another-react-lightbox/styles.css";
 import { FaWhatsapp, FaComments, FaCalendarAlt, FaCamera, FaGift } from 'react-icons/fa';
 import { BsCheckCircleFill } from 'react-icons/bs';
@@ -16,7 +18,11 @@ import logo from './assets/logo-coruja.png';
 // ===================================================================
 const whatsappLink = "https://wa.me/5588988088291?text=Olá! Quero um orçamento para formatura de ABC!";
 
-const imageUrls = [ "https://i.imgur.com/JZjfbZy.png", "https://i.imgur.com/8RXBNQD.png", "https://i.imgur.com/XdHTROM.png", "https://i.imgur.com/Wtr8rZ7.png", "https://i.imgur.com/GjnElDw.png", "https://i.imgur.com/qpWNLpq.png", "https://i.imgur.com/IA9UxXx.png", "https://i.imgur.com/9VODFSz.png" ];
+const imageUrls = [ 
+  "https://i.imgur.com/JZjfbZy.png", "https://i.imgur.com/8RXBNQD.png", "https://i.imgur.com/XdHTROM.png", 
+  "https://i.imgur.com/Wtr8rZ7.png", "https://i.imgur.com/GjnElDw.png", "https://i.imgur.com/qpWNLpq.png", 
+  "https://i.imgur.com/IA9UxXx.png", "https://i.imgur.com/9VODFSz.png" 
+];
 const lightboxSlides = imageUrls.map(url => ({ src: url }));
 
 // ===================================================================
@@ -42,8 +48,8 @@ function App() {
     <>
       <header className="nav-header">
         <img src={logo} alt="Coruja Estúdio Móvel Logo" className="nav-header__logo" />
-        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="cta-button">
-          Peça um Orçamento
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="cta-button button-with-icon">
+          <FaWhatsapp /> Peça um Orçamento
         </a>
       </header>
 
@@ -51,20 +57,37 @@ function App() {
         <section className="section hero">
           <h1 className="hero__title">O Primeiro Diploma é Inesquecível 🎓</h1>
           <p className="hero__subtitle">Eternizamos a conquista da formatura de ABC com a sensibilidade e a qualidade que este momento merece.</p>
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="cta-button">Falar no WhatsApp</a>
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="cta-button button-with-icon">
+            <FaWhatsapp /> Falar no WhatsApp
+          </a>
         </section>
 
         <section className="section">
           <h2 className="section-title">Nossa Galeria</h2>
           {isMobile ? (
             <div className="mobile-carousel">
-              <Swiper modules={[Pagination, Navigation]} slidesPerView={1} spaceBetween={20} loop pagination={{ clickable: true }} navigation>
-                {imageUrls.map((url, index) => ( <SwiperSlide key={index}><img src={url} alt={`Galeria de fotos ${index + 1}`} /></SwiperSlide> ))}
+              {/* NOTA: Um delay de 400ms é muito rápido. Se desejar, aumente este valor (ex: 3000ms). */}
+              <Swiper 
+                modules={[Pagination, Navigation, Autoplay]}
+                autoplay={{ delay: 400, disableOnInteraction: false }}
+                slidesPerView={1}
+                spaceBetween={20} 
+                loop={true} 
+                pagination={{ clickable: true }} 
+                navigation
+              >
+                {imageUrls.map((url, index) => ( 
+                  <SwiperSlide key={index}>
+                    <img src={url} alt={`Galeria de fotos ${index + 1}`} />
+                  </SwiperSlide> 
+                ))}
               </Swiper>
             </div>
           ) : (
             <div className="gallery-grid">
-              {imageUrls.map((url, index) => ( <img key={index} src={url} alt={`Galeria de fotos ${index + 1}`} className="gallery-grid__item" onClick={() => openLightbox(index)} /> ))}
+              {imageUrls.map((url, index) => ( 
+                <img key={index} src={url} alt={`Galeria de fotos ${index + 1}`} className="gallery-grid__item" onClick={() => openLightbox(index)} /> 
+              ))}
             </div>
           )}
         </section>
@@ -134,13 +157,13 @@ function App() {
         <p>© 2024 - Todos os direitos reservados.</p>
       </footer>
 
-      {/* Botão flutuante para DESKTOP */}
-      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Fale Conosco pelo WhatsApp" className="whatsapp-float cta-button"><FaWhatsapp /></a>
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Fale Conosco pelo WhatsApp" className="whatsapp-float">
+        <FaWhatsapp />
+      </a>
       
-      {/* Barra de CTA para MOBILE */}
       <div className="mobile-cta-bar">
-        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="cta-button">
-          Solicitar Orçamento via WhatsApp
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="cta-button button-with-icon">
+          <FaWhatsapp /> Solicitar Orçamento
         </a>
       </div>
 
