@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-// --- Imports ---
-import './App.css'; 
+// --- Imports de Estilos (ORDEM CORRETA É CRUCIAL) ---
+import './App.css'; // Nosso CSS personalizado
+import 'swiper/css'; // CSS Principal do Swiper
+import 'swiper/css/navigation'; // CSS do Módulo de Navegação
+import 'swiper/css/pagination'; // CSS do Módulo de Paginação
+
+// --- Imports de Lógica ---
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import Lightbox from "yet-another-react-lightbox";
-import "swiper/css"; 
-import "swiper/css/pagination"; 
-import "swiper/css/navigation";
 import "yet-another-react-lightbox/styles.css";
+
+// --- Imports de Ícones e Assets ---
 import { FaWhatsapp, FaComments, FaCalendarAlt, FaCamera, FaGift } from 'react-icons/fa';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import logo from './assets/logo-coruja.png';
@@ -66,10 +70,9 @@ function App() {
           <h2 className="section-title">Nossa Galeria</h2>
           {isMobile ? (
             <div className="mobile-carousel">
-              {/* NOTA: Um delay de 400ms é muito rápido. Se desejar, aumente este valor (ex: 3000ms). */}
               <Swiper 
                 modules={[Pagination, Navigation, Autoplay]}
-                autoplay={{ delay: 400, disableOnInteraction: false }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }} /* Ajustado para um delay mais agradável */
                 slidesPerView={1}
                 spaceBetween={20} 
                 loop={true} 
